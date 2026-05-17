@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parabola in IT & Game Dev</title>
+  <style>
+    :root {
+      /* Made the light background slightly darker to make the white frames POP */
+      --bg-light: #f1f5f9; 
+      --text-light: #0f172a;
+      --card-light: #ffffff;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --accent: #06b6d4;
+      --border-light: rgba(148, 163, 184, 0.4);
+      
+      /* Dark mode variables */
+      --bg-dark: #090d16;
+      --text-dark: #f1f5f9;
+      --card-dark: #131c30;
+      --border-dark: rgba(37, 99, 235, 0.2);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.4s, color 0.4s;
+      line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    header {
+      background: radial-gradient(circle at top left, #1e40af, #030712);
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin: 0;
+      background: linear-gradient(to right, #38bdf8, #a7f3d0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 19px;
+      color: #94a3b8;
+      margin-top: 12px;
+      font-weight: 400;
+    }
+
+    nav {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.4s, border-color 0.4s;
+    }
+
+    body.dark-mode nav {
+      background-color: rgba(11, 15, 25, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #64748b;
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    body.dark-mode nav ul li a {
+      color: #94a3b8;
+    }
+
+    body.dark-mode nav ul li a:hover {
+      color: var(--accent);
+    }
+
+    nav button {
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    nav button:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    body.dark-mode nav button {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    body.dark-mode nav button:hover {
+      background: #334155;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    /* ─── ENHANCED FRAMED TEXT AREAS (SECTIONS) ─── */
+    section {
+      margin-bottom: 45px;
+      padding: 40px;
+      background-color: var(--card-light);
+      
+      /* Beautiful Rounded Corners */
+      border-radius: 20px; 
+      
+      /* Clear Framing Border */
+      border: 1px solid var(--border-light); 
+      
+      /* Multi-layered Soft Shadows for Premium Depth */
+      box-shadow: 
+        0 4px 6px -1px rgba(15, 23, 42, 0.05),
+        0 10px 25px -5px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0px rgba(255, 255, 255, 0.9);
+        
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s, border-color 0.4s, box-shadow 0.3s;
+    }
+
+    /* Interactive Hover Effect */
+    section:hover {
+      transform: translateY(-6px);
+      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: 
+        0 20px 30px -10px rgba(15, 23, 42, 0.15),
+        0 4px 12px -2px rgba(15, 23, 42, 0.05);
+    }
+
+    /* Dark Mode Frames & Shadows */
+    body.dark-mode section {
+      background-color: var(--card-dark);
+      border: 1px solid var(--border-dark);
+      box-shadow: 
+        0 10px 30px -10px rgba(0, 0, 0, 0.7), 
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark-mode section:hover {
+      border-color: var(--accent);
+      box-shadow: 
+        0 20px 40px -15px rgba(0, 0, 0, 0.9), 
+        0 0 20px rgba(6, 182, 212, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    body.dark-mode h2 {
+      color: #fff;
+    }
+
+    h3 {
+      font-size: 18px;
+      color: var(--primary);
+      margin-top: 25px;
+    }
+
+    body.dark-mode h3 {
+      color: var(--accent);
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      color: #475569;
+    }
+
+    body.dark-mode li {
+      color: #94a3b8;
+    }
+
+    strong {
+      color: var(--text-light);
+    }
+
+    body.dark-mode strong {
+      color: #e2e8f0;
+    }
+
+    /* Modern Image Placeholder */
+    .image-placeholder {
+      background-color: #f1f5f9;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-weight: 500;
+      font-size: 14px;
+      margin-top: 25px;
+      text-align: center;
+      padding: 20px;
+      transition: background-color 0.4s, border-color 0.4s;
+    }
+
+    body.dark-mode .image-placeholder {
+      background-color: #1e293b;
+      border-color: #334155;
+      color: #64748b;
+    }
+
+    .image-placeholder img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    footer {
+      background-color: #0f172a;
+      color: #64748b;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    body.dark-mode footer {
+      background-color: #030712;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>პარაბოლა IT-სა და Game Dev-ში</h1>
+    <p>მათემატიკური მრუდები ციფრულ სამყაროში</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#kinematics">კინემატიკა</a></li>
+      <li><a href="#curves">ბეზიეს მრუდები</a></li>
+      <li><a href="#graphics">3D გრაფიკა</a></li>
+      <li><a href="#algorithms">AI & ალგორითმები</a></li>
+      <li><button onclick="toggleDarkMode()">თემის შეცვლა</button></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- SECTION 1 -->
+    <section id="kinematics">
+      <h2>1. კინემატიკა და ფიზიკა თამაშებში (Game Physics)</h2>
+      <p>პარაბოლა უმნიშვნელოვანეს როლს თამაშობს 2D და 3D თამაშების ფიზიკურ ძრავებში. ნებისმიერი ობიექტი, რომელიც ჰაერში მიფრინავს მიზიდულობის ძალის (Gravity) გავლენით, მოძრაობს პარაბოლურ ტრაექტორიაზე.</p>
+      
+      <h3>გამოყენების მაგალითები:</h3>
+      <ul>
+        <li><strong>ჭურვების ტრაექტორია (Projectile Motion):</strong> თამაშებში, როგორიცაა <i>Angry Birds</i>, <i>Worms</i>, ან ნებისმიერი შუა საუკუნეების თამაში მშვილდის სროლისას, ისრის ან ჭურვის ფრენის გზა პარაბოლური განტოლებით ითვლება.</li>
+        <li><strong>ხტომის მექანიკა (Jump Mechanics):</strong> პერსონაჟის ნახტომი (მაგალითად, <i>Super Mario</i>-ში) რეალისტურად რომ გამოიყურებოდეს, მისი კოორდინატები დროში კვადრატული ფუნქციით (პარაბოლით) იცვლება.</li>
+      </ul>
+
+      <div class="image-placeholder">
+      <img src="https://img.itch.zone/aW1nLzE4MzU5MDQwLnBuZw==/original/1wJJai.png">
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section id="curves">
+      <h2>2. კვადრატული ბეზიეს მრუდები (Quadratic Bézier Curves)</h2>
+      <p>კომპიუტერულ გრაფიკაში გლუვი ხაზების მისაღებად იყენებენ ბეზიეს მრუდებს. კვადრატული ბეზიეს მრუდი (Quadratic Bézier Curve) პირდაპირ კავშირშია პარაბოლასთან.</p>
+      
+      <h3>გამოყენების მაგალითები:</h3>
+      <ul>
+        <li><strong>პერსონაჟის მოძრაობის გზა (Pathfinding & Interpolation):</strong> როდესაც გსურთ, რომ NPC ან კამერა მოსახვევში მკვეთრად კი არ შემობრუნდეს, არამედ რბილად და გლუვად, მისი მოძრაობის ტრაექტორია პარაბოლური ბეზიეს მრუდით იწერება.</li>
+        <li><strong>ვექტორული გრაფიკა და ფონტები:</strong> TrueType (.ttf) ფონტები და ვექტორული გრაფიკული პროგრამები იყენებენ კვადრატულ პარაბოლურ მრუდებს ასოების და ფორმების მოსახაზად.</li>
+      </ul>
+
+      <div class="image-placeholder">
+      <img src="https://pic1.zhimg.com/v2-1a6c0ba8ed16b69a5db921af74f75850_r.jpg">
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section id="graphics">
+      <h2>3. 3D რენდერინგი და პარაბოლური სარკეები</h2>
+      <p>პარაბოლას გააჩნია უნიკალური ოპტიკური თვისება: ყველა პარალელური სხივი, რომელიც ეცემა მის ზედაპირს, აირეკლება ერთ წერტილში — ფოკუსში. ეს თვისება აქტიურად გამოიყენება გრაფიკასა და სიმულაციებში.</p>
+      
+      <h3>გამოყენების მაგალითები:</h3>
+      <ul>
+        <li><strong>Parabolic Mapping (Dual-Paraboloid Reflection):</strong> 3D გრაფიკაში გარემოს ანარეკლების სწრაფად დასათვლელად ხანდახან იყენებენ ორ პარაბოლურ ტექსტურას, რაც სფერულ მექანიზმზე უფრო ეფექტურია სისწრაფის მხრივ.</li>
+        <li><strong>სინათლისა და ხმის სიმულაცია:</strong> თამაშებში პროჟექტორების შუქის გავრცელება ან ექოს ეფექტები ხშირად ეყრდნობა პარაბოლოიდურ გეომეტრიას.</li>
+      </ul>
+
+      <div class="image-placeholder">
+      <img src="https://godotengine.org/storage/app/media/devlog/progress2/pr2-2.png">
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section id="algorithms">
+      <h2>4. ოპტიმიზაციის ალგორითმები და მანქანური სწავლება (AI)</h2>
+      <p>პარაბოლა მონაცემთა მეცნიერებასა და ალგორითმებში შეცდომების მინიმიზაციის საუკეთესო ინსტრუმენტია.</p>
+      
+      <h3>გამოყენების მაგალითები:</h3>
+      <ul>
+        <li><strong>Gradient Descent (გრადიენტული დაშვება):</strong> ხელოვნური ინტელექტის გაწვრთნისას, "Loss Function" (შეცდომის ფუნქცია) ხშირად პარაბოლის ფორმისაა. ალგორითმი ეძებს ამ პარაბოლის ყველაზე დაბალ წერტილს (მინიმუმს), რათა AI-მ მინიმალური შეცდომით იმუშაოს.</li>
+        <li><strong>Parabolic SAR (ალგორითმული თრეიდინგი):</strong> ფინანსურ IT ტექნოლოგიებში, ფასების ტრენდების საპროგნოზოდ გამოიყენება პარაბოლური ინდიკატორები, რომლებიც მიგვითითებენ, თუ როდის შეიცვლის ბაზარი მიმართულებას.</li>
+      </ul>
+
+      <div class="image-placeholder">
+      <img src="https://tradersunion.com/uploads/articles/22348/parabolic-sar.png">
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 პროექტი პარაბოლაზე IT-ში. დამზადებულია საგანმანათლებლო მიზნებისთვის.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+
+</body>
+</html>
